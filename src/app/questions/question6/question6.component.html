@@ -1,0 +1,40 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/highbloodpressure.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">High Blood Pressure</h5>
+        <p class="card-text">Heart failure, a condition where your heart is unable to provide enough blood to the body, can take years to develop inside your body. The narrowing and blocking of blood vessels caused by high blood pressure (HBP or hypertension) increases your risk of developing heart failure.</p>
+        <p class="card-text">High blood pressure is considered to be 140/90mmHg or higher (or 150/90mmHg or higher if you're over the age of 80). Ideal blood pressure is usually considered to be between 90/60mmHg and 120/80mmHg</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Does the patient have High Blood Pressure?</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" value="1" formControlName="highbloodpressure">
+      <label class="form-check-label">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" value="0"  formControlName="highbloodpressure">
+      <label class="form-check-label">No</label>
+    </div>
+    <div
+      *ngIf="!questionForm.get('highbloodpressure').valid && questionForm.get('highbloodpressure').touched"
+      class="invalid-feedback d-block"><p>Please select an option</p>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

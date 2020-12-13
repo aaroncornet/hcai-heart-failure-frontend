@@ -1,0 +1,44 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/ejectionfraction.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Ejection Fraction</h5>
+        <p class="card-text"> Ejection fraction (EF) is a measurement, expressed as a percentage, of how much blood the left ventricle pumps out with each contraction. An ejection fraction of 60 percent means that 60 percent of the total amount of blood in the left ventricle is pushed out with each heartbeat.
+          This indication of how well your heart is pumping out blood can help to diagnose and track heart failure.</p>
+        <p class="card-text">A normal heart’s ejection fraction may be between 50 and 70 percent. A ejection fraction measurement under 40 percent may be evidence of heart failure or cardiomyopathy.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Percentage of Ejection Fraction (%)</label>
+      <input
+        type="number"
+        id="ejectionfraction"
+        formControlName="ejectionfraction"
+        class="form-control"
+        (input)="onValueChange()">
+      <div
+        *ngIf="!questionForm.get('ejectionfraction').valid && questionForm.get('ejectionfraction').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid percentage of Ejection Fraction</p>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <app-tolerance [min]="50" [max]="70" [toleranceEvent]="toleranceSubject.asObservable()"></app-tolerance>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

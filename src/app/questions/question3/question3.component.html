@@ -1,0 +1,42 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/creatininephosphokinase.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Creatinine Phosphokinase</h5>
+        <p class="card-text">Creatine phosphokinase (CPK), also known by the name creatine kinase (CK) is the enzyme that catalyzes the reaction of creatine and adenosine triphosphate (ATP) to phosphocreatine and adenosine diphosphate (ADP). The phosphocreatine created from this reaction is used to supply tissues and cells that require substantial amounts of ATP like the brain, skeletal muscles, and the heart with their required ATP. The normal CPK level is considered to be 20 to 200 IU/L. Many conditions can cause derangement in CPK levels, including rhabdomyolysis, heart disease, kidney disease, or even certain medications.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Levels of Creatinine Phosphokinase (mcg/L)</label>
+      <input
+        type="number"
+        id="creatininephosphokinase"
+        formControlName="creatininephosphokinase"
+        class="form-control"
+        (input)="onValueChange()">
+      <div
+        *ngIf="!questionForm.get('creatininephosphokinase').valid && questionForm.get('creatininephosphokinase').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid level of Creatinine Phosphokinase</p>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <app-tolerance [min]="20" [max]="200" [toleranceEvent]="toleranceSubject.asObservable()"></app-tolerance>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

@@ -1,0 +1,33 @@
+<div *ngIf="isLoading">
+  <img src="assets/loader.gif" style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  ">
+  <h4 style="text-align: center">Predicting...</h4>
+</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="errorMessage !== undefined">
+    {{errorMessage}}
+  </div>
+  <div *ngIf="errorMessage === undefined">
+    <div *ngIf="predictionResult === 1">
+      <app-match [patient]="this.patient"></app-match>
+    </div>
+    <div *ngIf="predictionResult === 0">
+      <app-no-match [patient]="this.patient"></app-no-match>
+    </div>
+    <hr/>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Disclaimer!</h4>
+      <p>
+        This result should never be used as a means of diagnosing. Instead it should be used to test out an already well defined diagnosis or reinforce a theory already present in order to refer a patient.
+        Understand that this prediction is solely based on a statistical approximation of the provided data and that individual cases just like this one, should be assessed by a medical professional only.
+      </p>
+      <hr>
+      <p class="mb-0">When in doubt of this prediction or by anything you are experiencing regarding this topic, <b>ALWAYS</b> consult a medical professional.</p>
+    </div>
+    <hr/>
+    <p>If you wish to fill in the form again please click the button below</p>
+    <a routerLink="/start" class="btn btn-danger" style="margin-bottom: 20px">Start</a>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/age.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Age of the patient</h5>
+        <p class="card-text">Congestive heart failure affects people of all ages,
+          from children and young adults to the middle-aged and the elderly.
+          Almost 1.4 million persons with CHF are under 60 years of age.
+          CHF is present in 2 percent of persons age 40 to 59.</p>
+
+        <p class="card-text">There are a number of factors that may make heart failure more likely, despite your age.
+          For that reason it is one of the variables that is included in this prediction system.
+        </p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Age of the patient <b>(years)</b></label>
+      <input
+        type="number"
+        id="age"
+        formControlName="age"
+        class="form-control">
+      <div
+        *ngIf="!questionForm.get('age').valid && questionForm.get('age').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid age in years</p>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

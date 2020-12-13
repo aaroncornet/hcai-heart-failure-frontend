@@ -1,0 +1,43 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/serum.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Serum Creatinine</h5>
+        <p class="card-text">A rise in blood creatinine concentration is a late marker, observed only with marked damage to functioning nephrons.</p>
+        <p class="card-text">Diagnostic serum creatinine studies are used to determine renal function. The reference interval is 0.6–1.3 mg/dL (53–115 µmol/L). Measuring serum creatinine is a simple test, and it is the most commonly used indicator of renal function.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Levels of Serum Creatinine (mg/dL)</label>
+      <input
+        type="number"
+        id="serumcreatinine"
+        formControlName="serumcreatinine"
+        class="form-control"
+        (input)="onValueChange()">
+      <div
+        *ngIf="!questionForm.get('serumcreatinine').valid && questionForm.get('serumcreatinine').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid level of Serum Creatinine</p>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <app-tolerance [min]="0.6" [max]="1.3" [toleranceEvent]="toleranceSubject.asObservable()"></app-tolerance>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" width="282" src="/assets/healthy.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title"><b>No</b> Heart Failure predicted</h5>
+        <p class="card-text">We've checked your information with other people and it was found that people with blood values and traits, similar to yours, <b>did not</b> suffer from the condition <b>Heart Failure</b>. The cause of any symptoms being experienced might be caused by a different underlying ailment.</p>
+        <p class="card-text">Refer this patient to a medical professional if you think he/she might be experiencing signs or symptoms of heart failure. Seek emergency treatment if you experience any of the following:</p>
+        <ul>
+          <li>Chest pain</li>
+          <li>Fainting or severe weakness</li>
+          <li>Rapid or irregular heartbeat associated with shortness of breath, chest pain or fainting</li>
+          <li>Sudden, severe shortness of breath and coughing up pink, foamy mucus</li>
+        </ul>
+        <p class="card-text">Given the fact that Heart Failure is a very dangerous condition and could easily lead to severe impairment of your own health it is wise refer this patient to a medical professional when in doubt.</p>
+      </div>
+      <div *ngIf="this.patient.diabetes === 1 || this.patient.smoking === 1">
+        <hr/>
+        <h5>Lifestyle advice to patient</h5>
+        <ul>
+          <li *ngIf="this.patient.diabetes === 1">It seems the patient is suffering from diabetes. It is advisable to entice the patient to a healthier lifestyle to battle this disease.</li>
+          <li *ngIf="this.patient.smoking === 1">Smoking is known as a factor in many cardiovascular diseases. It is advisable to entice the patient to stop smoking.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

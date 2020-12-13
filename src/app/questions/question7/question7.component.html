@@ -1,0 +1,43 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/platelets.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Platelets</h5>
+        <p class="card-text">Heart failure is associated with increased risk of venous thromboembolism, stroke, and sudden death. Platelet abnormalities have been well described in heart failure but the significance of platelets in contributing to the thromboembolic complications of heart failure remains uncertain. Furthermore, the role of antiplatelet agents in heart failure remains unclear.</p>
+        <p class="card-text">A normal platelet count ranges from 150,000 to 450,000 platelets per microliter of blood. Having more than 450,000 platelets is a condition called thrombocytosis; having less than 150,000 is known as thrombocytopenia.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Levels of Platelets (amount/mcL)</label>
+      <input
+        type="number"
+        id="platelets"
+        formControlName="platelets"
+        class="form-control"
+        (input)="onValueChange()">
+      <div
+        *ngIf="!questionForm.get('platelets').valid && questionForm.get('platelets').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid level of Platelets</p>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <app-tolerance [min]="150000" [max]="450000" [toleranceEvent]="toleranceSubject.asObservable()"></app-tolerance>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

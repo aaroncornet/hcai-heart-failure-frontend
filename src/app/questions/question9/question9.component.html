@@ -1,0 +1,42 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/serum.png" alt="Suresh Dasari Card">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Serum Sodium</h5>
+        <p class="card-text">Hyponatremia or low serum sodium level is typically defined as a serum sodium concentration of <135 mEq/L and is one of the most common biochemical disorders featured in heart failure patients, with a prevalence close to 25%. HF affects cardiac output by either decreasing heart rate or reducing the stroke volume.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row-cols-3">
+    <div class="col-xs-6">
+      <label>Levels of Serum Sodium (mEq/L)</label>
+      <input
+        type="number"
+        id="serumsodium"
+        formControlName="serumsodium"
+        class="form-control"
+        (input)="onValueChange()">
+      <div
+        *ngIf="!questionForm.get('serumsodium').valid && questionForm.get('serumsodium').touched"
+        class="invalid-feedback d-block"><p>Please fill in a valid level of Serum Sodium</p>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <app-tolerance [min]="135" [max]="145" [toleranceEvent]="toleranceSubject.asObservable()"></app-tolerance>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+

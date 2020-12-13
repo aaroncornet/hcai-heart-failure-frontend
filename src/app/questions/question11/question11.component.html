@@ -1,0 +1,39 @@
+<app-question-number-header [number]="questionNumber"></app-question-number-header>
+<hr/>
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-sm-5">
+      <img class="card-img" src="/assets/smoking.png" alt="Gender">
+    </div>
+    <div class="col-sm-7">
+      <div class="card-body">
+        <h5 class="card-title">Smoking</h5>
+        <p class="card-text">In addition to vascular effects, smoking, via increased oxidative stress and inflammation, directly effects on the myocardium leading to systolic and diastolic dysfunction. It also promotes other heart failure (HF) risk factors including blood pressure, increased heart rate, diabetes, and atherosclerosis.</p>
+        <button disabled class="btn btn-primary">More information</button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Does the patient smoke?</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" value="1" formControlName="smoking">
+      <label class="form-check-label">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" value="0"  formControlName="smoking">
+      <label class="form-check-label">No</label>
+    </div>
+    <div
+      *ngIf="!questionForm.get('smoking').valid && questionForm.get('smoking').touched"
+      class="invalid-feedback d-block"><p>Please select an option</p>
+    </div>
+  </div>
+  <hr/>
+  <button class="btn btn-outline-danger" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" type="submit" [disabled]="!questionForm.valid">Next</button>
+</form>
+
+
