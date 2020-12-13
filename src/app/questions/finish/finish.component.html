@@ -60,7 +60,7 @@
   <tr>
     <td>Serum Sodium</td>
     <td>{{patient.serumsodium}} mEq/L</td>
-    <td><app-tolerance-inline [value]="patient.serumsodium" [min]="135" [max]="1000"></app-tolerance-inline></td>
+    <td><app-tolerance-inline [value]="patient.serumsodium" [min]="135" [max]="145"></app-tolerance-inline></td>
 
   </tr>
   <tr>
@@ -76,6 +76,7 @@
   </tbody>
 </table>
 <hr/>
+<button class="btn btn-outline-danger" (click)="previous()">Previous</button>
 <button class="btn btn-danger" (click)="finish()">Predict</button>
 
 <!--<img src="assets/loader.gif">-->

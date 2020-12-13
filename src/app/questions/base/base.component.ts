@@ -11,9 +11,8 @@ import {FinishComponent} from '../finish/finish.component';
 })
 export class BaseComponent implements OnInit {
 
-  //patient: Patient = new Patient();
-  patient: Patient = new Patient(55, 0, 1820,0,38,0,270000,1.2,139,0,0);
-  component: any = FinishComponent;
+  patient: Patient = new Patient();
+  component: any = StartComponent;
 
   constructor(
     private router: Router,

@@ -3,6 +3,8 @@ import {QuestionBase} from '../../classes/question-base';
 import {ResultComponent} from '../result/result.component';
 import {PatientService} from '../../services/patient.service';
 import {Router} from '@angular/router';
+import {Question1Component} from '../question1/question1.component';
+import {Question11Component} from '../question11/question11.component';
 
 @Component({
   selector: 'app-finish',
@@ -39,6 +41,9 @@ export class FinishComponent extends QuestionBase implements OnInit {
     }
   }
 
+  previous(): void {
+    this.questionEvent.emit(Question11Component);
+  }
   finish(): void {
     this.patientService.setPatient(this.patient);
     this.router.navigate(['/result']);
